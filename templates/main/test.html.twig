@@ -28,14 +28,20 @@
 
 
     {# filtres #}
-    <h2>Quelquest filtres</h2>
+    <h2>Quelques filtres</h2>
     <div>{{ name | upper }}, Taille du nom : {{ name|length }}</div>
 
     <div>Taille du tableau : {{ colors | length }} couleurs</div>
 
     <div>Date du jour : {{ 'now' | date('d/m/Y') }}</div>
 
-    </body>
-    </html>
+    <h3>Série !</h3>
+    <div>{{ mySerie.name }}</div>
+    <div>{{ mySerie.author }}</div>
+    <div>Nombre épisodes : {{ mySerie.nbEpisode }}</div>
+    <div>Date du serveur : {{ date | date('d/m/Y H:i') }}</div>
+
+    <h3>XSS</h3>
+    <div>{{ username }}</div>
 
 {% endblock %}
