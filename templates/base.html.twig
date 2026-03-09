@@ -13,10 +13,12 @@
     {% endblock %}
 </head>
 <body>
-<header>header</header>
+<header>
+    {% include 'views/nav/nav.html.twig' %}
+</header>
 <main>
     {% block body %}{% endblock %}
 </main>
-<footer>footer</footer>
+<footer>{% include 'views/nav/nav.html.twig' %}</footer>
 </body>
 </html>
