@@ -34,5 +34,13 @@
 {% set user = {name: 'Michel', age:98} %}
 <p>{{ user.name }}</p>
 <p>{{ user.age }}</p>
+
+
+{# filtres #}
+<h2>Quelquest filtres</h2>
+<div>{{ name | upper }}, Taille du nom : {{ name|length }}</div>
+
+<div>Taille du tableau : {{ colors | length }} couleurs</div>
+
 </body>
 </html>
