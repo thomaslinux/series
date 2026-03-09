@@ -18,7 +18,7 @@ final class MainController extends AbstractController
     #[Route('/test', name: 'main_test')]
     public function test(): Response
     {
-        dd("test");
+        dd("Hello World!");
 
     }
 }
