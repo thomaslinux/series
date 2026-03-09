@@ -25,10 +25,14 @@
         <p>Dernière couleur</p>
     {% endif %}
     <div style="background-color: {{ color }}">{{ color }}</div>
-    <div>Nombre d'éléments : {{ loop.index }}</div>
-    <div>Nombre d'éléments : {{ loop.index0 }}</div>
-
+    <div>Index de l'élément : {{ loop.index }} / {{ loop.length }}</div>
+    <div>Index de l'élément à partir de 0: {{ loop.index0 }}</div>
 {% endfor %}
 
+{# Utilisation d'objet #}
+
+{% set user = {name: 'Michel', age:98} %}
+<p>{{ user.name }}</p>
+<p>{{ user.age }}</p>
 </body>
 </html>
