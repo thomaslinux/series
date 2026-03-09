@@ -11,6 +11,8 @@ final class MainController extends AbstractController
     #[Route('', name: 'main_home')]
     public function home(): Response
     {
+        dd("coucou");
+
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController',
         ]);
