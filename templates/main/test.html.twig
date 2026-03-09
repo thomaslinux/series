@@ -43,5 +43,9 @@
 
     <h3>XSS</h3>
     <div>{{ username }}</div>
+    {# désactive la protection xss #}
+    <div>{{ username | raw }}</div>
+    {# enlève les balises #}
+    <div>{{ username | striptags }}</div>
 
 {% endblock %}

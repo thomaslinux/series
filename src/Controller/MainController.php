@@ -20,7 +20,7 @@ final class MainController extends AbstractController
     {
         $serie = ['name' => 'Dragon Ball Z', 'author' => 'Toriyamaha', 'nbEpisode' => 291];
 
-        $username = '<h1>Sylvain</h1>'
+        $username = '<h1>Sylvain</h1>';
 
         return $this->render('main/test.html.twig', [
             'mySerie' => $serie,
