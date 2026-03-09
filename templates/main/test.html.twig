@@ -9,8 +9,26 @@
 </head>
 <body>
 <h1>Test Series !</h1>
+
 {# Création de variable #}
 {% set name = 'Michel' %}
 <h2>Hello {{ name }}</h2>
+
+{# Création d'un tableau #}
+{% set colors = ['red', 'yellow', 'purple', 'cornflowerblue'] %}
+
+
+{% for color in colors %}
+    {% if loop.first %}
+        <p>Première couleur</p>
+    {% elseif loop.last %}
+        <p>Dernière couleur</p>
+    {% endif %}
+    <div style="background-color: {{ color }}">{{ color }}</div>
+    <div>Nombre d'éléments : {{ loop.index }}</div>
+    <div>Nombre d'éléments : {{ loop.index0 }}</div>
+
+{% endfor %}
+
 </body>
 </html>
