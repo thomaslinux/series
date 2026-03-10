@@ -41,6 +41,8 @@ final class SerieController extends AbstractController
 
         dump($serie);
 
+        $entityManager->persist($serie);
+
         return $this->render('serie/create.html.twig');
     }
 
