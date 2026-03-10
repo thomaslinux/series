@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Serie;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Exception\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,8 +21,11 @@ final class SerieController extends AbstractController
         return $this->render('serie/list.html.twig');
     }
 
+    /**
+     * @throws ORMException
+     */
     #[Route('/create', name: 'create', methods: ['POST', 'GET'])]
-    public function create(EntityManager $entityManager): Response
+    public function create(EntityManagerInterface $entityManager): Response
     {
         // TODO Creer une serie !
 
@@ -42,6 +47,10 @@ final class SerieController extends AbstractController
         dump($serie);
 
         $entityManager->persist($serie);
+        $entityManager->flush();
+
+        dump($serie);
+
 
         return $this->render('serie/create.html.twig');
     }
