@@ -22,6 +22,6 @@ final class SerieController extends AbstractController
     {
         // TODO Renvoyer une série !
 
-        return $this->render('serie/list.html.twig');
+        return $this->render('serie/show.html.twig');
     }
 }
