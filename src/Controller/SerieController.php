@@ -51,6 +51,12 @@ final class SerieController extends AbstractController
 
         dump($serie);
 
+        $serie->setName('Code Quantum');
+        $entityManager->persist($serie);
+        $entityManager->flush();
+
+        $entityManager->remove($serie);
+        $entityManager->flush();
 
         return $this->render('serie/create.html.twig');
     }
