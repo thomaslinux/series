@@ -20,7 +20,7 @@ final class SerieController extends AbstractController
     #[Route('/{id}', name: 'show')]
     public function show(int $id): Response
     {
-        // TODO Renvoyer la liste des séries !
+        // TODO Renvoyer une série !
 
         return $this->render('serie/list.html.twig');
     }
