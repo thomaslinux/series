@@ -28,6 +28,8 @@ final class SerieController extends AbstractController
     #[Route('/{id}', name: 'show', requirements: ['id' => '\d+'])]
     public function show(int $id): Response
     {
+        dump($id);
+
         // TODO Renvoyer une série !
 
         return $this->render('serie/show.html.twig');
