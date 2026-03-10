@@ -30,7 +30,6 @@ final class SerieController extends AbstractController
         // TODO Creer une serie !
 
         $serie = new Serie();
-        $serie = new Serie();
         $serie
             ->setBackdrop('backdrop.png')
             ->setDateCreated(new \DateTime())
