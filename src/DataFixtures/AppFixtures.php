@@ -21,11 +21,11 @@ class AppFixtures extends Fixture
                 ->setName($faker->text(20))
                 ->setGenres($faker->randomElement(['SF', 'Comedy', 'Drama', 'Western']));
             $serie->setLastAirDate($faker->dateTimeBetween($serie->getFirstAirDate()))
-                ->setPopularity(5000)
+                ->setPopularity($faker->numberBetween(0, 9999))
                 ->setPoster('poster.png')
-                ->setStatus('canceled')
-                ->setTmdbId(12345)
-                ->setVote(8);
+                ->setStatus($faker->randomElement(['canceled', 'returning', 'ended']))
+                ->setTmdbId($faker->randomDigitNotNull())
+                ->setVote($faker->numberBetween(0, 10));
         }
     }
 }
