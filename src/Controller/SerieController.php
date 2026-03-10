@@ -16,4 +16,12 @@ final class SerieController extends AbstractController
 
         return $this->render('serie/list.html.twig');
     }
+
+    #[Route('/{id}', name: 'show')]
+    public function show(int $id): Response
+    {
+        // TODO Renvoyer la liste des séries !
+
+        return $this->render('serie/list.html.twig');
+    }
 }
