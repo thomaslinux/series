@@ -17,7 +17,7 @@ final class SerieController extends AbstractController
         return $this->render('serie/list.html.twig');
     }
 
-    #[Route('/create', name: 'create')]
+    #[Route('/create', name: 'create', methods: ['POST'])]
     public function create(): Response
     {
         // TODO Creer une serie !
