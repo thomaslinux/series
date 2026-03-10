@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Serie;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -18,9 +20,26 @@ final class SerieController extends AbstractController
     }
 
     #[Route('/create', name: 'create', methods: ['POST', 'GET'])]
-    public function create(): Response
+    public function create(EntityManager $entityManager): Response
     {
         // TODO Creer une serie !
+
+        $serie = new Serie();
+        $serie = new Serie();
+        $serie
+            ->setBackdrop('backdrop.png')
+            ->setDateCreated(new \DateTime())
+            ->setFirstAirDate(new \DateTime('-6 year'))
+            ->setName('Stargate SG1')
+            ->setGenres('SF')
+            ->setLastAirDate(new \DateTime('-3 month'))
+            ->setPopularity(5000)
+            ->setPoster('poster.png')
+            ->setStatus('canceled')
+            ->setTmdbId(12345)
+            ->setVote(8);
+
+        dump($serie);
 
         return $this->render('serie/create.html.twig');
     }
