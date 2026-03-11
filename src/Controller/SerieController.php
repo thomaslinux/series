@@ -64,16 +64,16 @@ final class SerieController extends AbstractController
     }
 
     #[Route('/{id}', name: 'show', requirements: ['id' => '\d+'])]
-    public function show(Serie $id, SerieRepository $serieRepository): Response
+    public function show(int $id, SerieRepository $serieRepository): Response
     {
-//        $serie = $serieRepository->find($id);
-//
-//        if (!$serie) {
-//            throw $this->createNotFoundException("Oops ! Serie not found");
-//        }
+        $serie = $serieRepository->find($id);
+
+        if (!$serie) {
+            throw $this->createNotFoundException("Oops ! Serie not found");
+        }
 
         return $this->render('serie/show.html.twig', [
-            'serie' => $id
+            'serie' => $serie
         ]);
     }
 
