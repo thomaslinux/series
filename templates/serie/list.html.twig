@@ -2,6 +2,10 @@
 
 {% block body %}
     <h2>List of TV-SHOW</h2>
+
+    {% for serie in series %}
+        <div>{{ serie.name }}</div>
+    {% endfor %}
 {% endblock %}
 
 {% block title %}
