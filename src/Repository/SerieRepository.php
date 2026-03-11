@@ -16,7 +16,7 @@ class SerieRepository extends ServiceEntityRepository
         parent::__construct($registry, Serie::class);
     }
 
-    public function findBestSeries()
+    public function findBestSeries(int $page = 1)
     {
         // DQL
 //        $dql = "
@@ -35,6 +35,8 @@ class SerieRepository extends ServiceEntityRepository
 
         $query = $qb->getQuery();
         $query->setMaxResults(50);
+        $offset = ($page - 1) * 50;
+        $query->setFirstResult($offset);
         return $query->getResult();
 
     }
