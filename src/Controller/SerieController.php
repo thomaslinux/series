@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('series', name: 'series_')]
 final class SerieController extends AbstractController
 {
-    #[Route('/{page}', name: 'list')]
+    #[Route('/{page}', name: 'list', requirements: ['page' => '\d+'])]
     public function list(SerieRepository $serieRepository, int $page = 1): Response
     {
 //        $series = $serieRepository->findAll();
