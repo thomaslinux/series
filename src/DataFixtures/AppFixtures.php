@@ -26,6 +26,11 @@ class AppFixtures extends Fixture
                 ->setStatus($faker->randomElement(['canceled', 'returning', 'ended']))
                 ->setTmdbId($faker->randomDigitNotNull())
                 ->setVote($faker->numberBetween(0, 10));
+
+            $manager->persist($serie);
         }
+
+        $manager->flush();
+
     }
 }
