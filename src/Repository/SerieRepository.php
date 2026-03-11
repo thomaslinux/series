@@ -29,12 +29,12 @@ class SerieRepository extends ServiceEntityRepository
 
         $qb = $this->createQueryBuilder('s');
         $qb
-            ->andWhere('s.vote > 8')
-            ->andWhere('s.popularity > 1000')
+//            ->andWhere('s.vote > 8')
+//            ->andWhere('s.popularity > 1000')
             ->addOrderBy('s.popularity', 'DESC');
 
         $query = $qb->getQuery();
-
+        $query->setMaxResults(50);
         return $query->getResult();
 
     }
