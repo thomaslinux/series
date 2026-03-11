@@ -20,7 +20,11 @@ class SerieType extends AbstractType
             ])
             ->add('overview', TextareaType::class)
             ->add('status', ChoiceType::class, [
-                
+                'choices' => [
+                    'Ended' => 'ended',
+                    'Returning' => 'returning',
+                    'Canceled' => 'canceled',
+                ]
             ])
             ->add('vote')
             ->add('popularity')
