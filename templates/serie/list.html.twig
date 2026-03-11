@@ -4,7 +4,9 @@
 
     <h2>List of TV-SHOW</h2>
     <div>
-        <a href="{{ path('series_list', {'page' : currentPage - 1}) }}">Previous page</a>
+        {% if currentPage > 1 %}
+            <a href="{{ path('series_list', {'page' : currentPage - 1}) }}">Previous page</a>
+        {% endif %}
         <a href="{{ path('series_list', {'page' : currentPage + 1}) }}">Next page</a>
     </div>
     <section class="series-list">
