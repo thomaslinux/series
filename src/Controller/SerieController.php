@@ -68,7 +68,9 @@ final class SerieController extends AbstractController
     {
         $serie = $serieRepository->find($id);
 
-        // TODO Renvoyer une série !
+        if (!$serie) {
+            throw $this->createNotFoundException("Oops ! Serie not found");
+        }
 
         return $this->render('serie/show.html.twig', [
             'serie' => $serie
