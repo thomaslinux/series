@@ -15,12 +15,12 @@ use Symfony\Component\Routing\Attribute\Route;
 final class SerieController extends AbstractController
 {
     #[Route('/{page}', name: 'list')]
-    public function list(int $page = 1, SerieRepository $serieRepository): Response
+    public function list(SerieRepository $serieRepository, int $page = 1): Response
     {
 //        $series = $serieRepository->findAll();
 //        $series = $serieRepository->findBy([], ['popularity' => 'DESC'], 25, 25);
 
-        $series = $serieRepository->findBestSeries();
+        $series = $serieRepository->findBestSeries($page);
 
         return $this->render('serie/list.html.twig', [
             'series' => $series
@@ -66,7 +66,7 @@ final class SerieController extends AbstractController
         return $this->render('serie/create.html.twig');
     }
 
-    #[Route('/{id}', name: 'show', requirements: ['id' => '\d+'])]
+    #[Route('/details/{id}', name: 'show', requirements: ['id' => '\d+'])]
     public function show(int $id, SerieRepository $serieRepository): Response
     {
         $serie = $serieRepository->find($id);
