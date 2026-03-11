@@ -5,6 +5,18 @@
 
 {% block body %}
     <h2>Detail of a TV-SHOW</h2>
-    {{ serie.name }}
+    <div class="serie-details">
+        <div>
+            <img src="{{ asset('images/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+        </div>
+        <div class="serie-details-infos">
+            <h2>{{ serie.name }}</h2>
+            <div>User ratings {{ serie.vote }}</div>
+            <div>Categorized in {{ serie.genres }}</div>
+            <div>Status {{ serie.status }}</div>
+            <div>Aired from {{ serie.firstAirDate | date('Y/m/d') }} to {{ serie.lastAirDate | date('Y/m/d') }}</div>
+            <div>{{ serie.overview | nl2br }}</div>
+        </div>
+    </div>
 {% endblock %}
 
