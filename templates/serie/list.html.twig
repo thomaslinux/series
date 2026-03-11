@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>List of TV-SHOW</h2>
 
-    {% for serie in series %}
-        <div>{{ serie.name }}</div>
-    {% endfor %}
+    <h2>List of TV-SHOW</h2>
+    <section class="series-list">
+
+
+        {% for serie in series %}
+            <article>
+
+                {#                <div>{{ serie.name }}</div> #}
+                <img src="{{ asset('images/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+            </article>
+        {% endfor %}
+
+    </section>
+
 {% endblock %}
 
 {% block title %}

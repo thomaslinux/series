@@ -34,6 +34,18 @@ nav li {
     margin-right: 1rem;
 }
 
-img {
+header img {
     height: 80px;
+}
+
+img {
+    max-width: 100%; /*du conteneur*/
+    min-width: 150px;
+
+}
+
+.series-list {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }

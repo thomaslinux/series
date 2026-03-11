@@ -1,0 +1,5 @@
+.series-list {
+    all: unset;
+    display: flex;
+    flex-wrap: wrap;
+}
