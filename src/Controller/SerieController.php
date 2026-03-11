@@ -20,9 +20,18 @@ final class SerieController extends AbstractController
 //        $series = $serieRepository->findAll();
 //        $series = $serieRepository->findBy([], ['popularity' => 'DESC'], 25, 25);
 
-        $series = $serieRepository->findBestSeries($page);
         $nbSeries = $serieRepository->count();
         $maxPage = ceil($nbSeries / 50);
+
+        if ($page > $maxPage) {
+            throw $this->createNotFoundException("You scrolled too far and reached the end of Internet");
+        }
+
+        if ($page < 1) {
+            return $this->redirectToRoute('series_list', ['page' => 1]);
+        }
+        
+        $series = $serieRepository->findBestSeries($page);
 
         return $this->render('serie/list.html.twig', [
             'series' => $series,
