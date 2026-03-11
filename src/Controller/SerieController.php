@@ -14,8 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('series', name: 'series_')]
 final class SerieController extends AbstractController
 {
-    #[Route('', name: 'list')]
-    public function list(SerieRepository $serieRepository): Response
+    #[Route('/{page}', name: 'list')]
+    public function list(int $page = 1, SerieRepository $serieRepository): Response
     {
 //        $series = $serieRepository->findAll();
 //        $series = $serieRepository->findBy([], ['popularity' => 'DESC'], 25, 25);
