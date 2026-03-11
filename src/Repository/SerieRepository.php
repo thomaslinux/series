@@ -16,28 +16,17 @@ class SerieRepository extends ServiceEntityRepository
         parent::__construct($registry, Serie::class);
     }
 
-    //    /**
-    //     * @return Serie[] Returns an array of Serie objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('s.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findBestSeries()
+    {
+        // DQL
+        $dql = "
+            SELECT s FROM App\Entity\Serie AS s
+            WHERE s.vote > 8 AND s.popularity > 1000
+            ORDER BY s.popularity DESC
+        ";
 
-    //    public function findOneBySomeField($value): ?Serie
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        $query = $this->getEntityManager()->createQuery($dql);
+        return $query->getResult();
+
+    }
 }
