@@ -1,0 +1,12 @@
+.serie-name {
+    position: absolute;
+    visibility: hidden;
+    padding: 5px;
+    background-color: #EEEEEE;
+    color: #134561;
+    
+}
+
+a:hover .serie-name {
+    visibility: unset;
+}

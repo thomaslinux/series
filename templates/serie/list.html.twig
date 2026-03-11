@@ -8,9 +8,11 @@
 
         {% for serie in series %}
             <article>
+                <a href="{{ path('series_show', {'id': serie.id}) }}">
 
-                {#                <div>{{ serie.name }}</div> #}
-                <img src="{{ asset('images/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+                    <div class="serie-name">{{ serie.name }}</div>
+                    <img src="{{ asset('images/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+                </a>
             </article>
         {% endfor %}
 
