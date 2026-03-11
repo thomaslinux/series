@@ -19,13 +19,22 @@ class SerieRepository extends ServiceEntityRepository
     public function findBestSeries()
     {
         // DQL
-        $dql = "
-            SELECT s FROM App\Entity\Serie AS s
-            WHERE s.vote > 8 AND s.popularity > 1000
-            ORDER BY s.popularity DESC
-        ";
+//        $dql = "
+//            SELECT s FROM App\Entity\Serie AS s
+//            WHERE s.vote > 8 AND s.popularity > 1000
+//            ORDER BY s.popularity DESC
+//        ";
+//
+//        $query = $this->getEntityManager()->createQuery($dql);
 
-        $query = $this->getEntityManager()->createQuery($dql);
+        $qb = $this->createQueryBuilder('s');
+        $qb
+            ->andWhere('s.vote > 8')
+            ->andWhere('s.popularity > 1000')
+            ->addOrderBy('s.popularity', 'DESC');
+
+        $query = $qb->getQuery();
+
         return $query->getResult();
 
     }
