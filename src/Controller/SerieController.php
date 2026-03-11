@@ -23,7 +23,8 @@ final class SerieController extends AbstractController
         $series = $serieRepository->findBestSeries($page);
 
         return $this->render('serie/list.html.twig', [
-            'series' => $series
+            'series' => $series,
+            'currentPage' => $page
         ]);
     }
 
