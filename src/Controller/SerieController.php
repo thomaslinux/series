@@ -21,10 +21,13 @@ final class SerieController extends AbstractController
 //        $series = $serieRepository->findBy([], ['popularity' => 'DESC'], 25, 25);
 
         $series = $serieRepository->findBestSeries($page);
+        $nbSeries = $serieRepository->count();
+        $maxPage = ceil($nbSeries / 50);
 
         return $this->render('serie/list.html.twig', [
             'series' => $series,
-            'currentPage' => $page
+            'currentPage' => $page,
+            'maxPage' => $maxPage
         ]);
     }
 
