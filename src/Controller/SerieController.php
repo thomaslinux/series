@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Serie;
+use App\Repository\SerieRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Exception\ORMException;
@@ -14,11 +15,13 @@ use Symfony\Component\Routing\Attribute\Route;
 final class SerieController extends AbstractController
 {
     #[Route('', name: 'list')]
-    public function list(): Response
+    public function list(SerieRepository $serieRepository): Response
     {
-        // TODO Renvoyer la liste des séries !
+        $series = $serieRepository->findAll();
 
-        return $this->render('serie/list.html.twig');
+        return $this->render('serie/list.html.twig', [
+            'series' => $series
+        ]);
     }
 
     /**
