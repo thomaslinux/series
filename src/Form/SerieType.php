@@ -46,9 +46,7 @@ class SerieType extends AbstractType
             ->add('lastAirDate')
             ->add('backdrop')
             ->add('poster')
-            ->add('tmdbId')
-            ->add('dateCreated')
-            ->add('dateModified');
+            ->add('tmdbId');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
