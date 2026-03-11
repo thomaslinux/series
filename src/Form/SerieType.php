@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Serie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,12 +25,24 @@ class SerieType extends AbstractType
                     'Ended' => 'ended',
                     'Returning' => 'returning',
                     'Canceled' => 'canceled',
+                ], [
+                    'expanded' => false,
+                    'multiple' => false
                 ]
             ])
             ->add('vote')
             ->add('popularity')
-            ->add('genres')
-            ->add('firstAirDate')
+            ->add('genres', ChoiceType::class, [
+                'choices' => [
+                    'Drama' => 'drama',
+                    'SF' => 'sf',
+                    'Comedy' => 'comedy',
+                    'Fantasy' => 'fantasy'
+                ]
+            ])
+            ->add('firstAirDate', DateType::class, [
+                'widget' => 'single_text'
+            ])
             ->add('lastAirDate')
             ->add('backdrop')
             ->add('poster')
