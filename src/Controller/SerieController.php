@@ -30,7 +30,7 @@ final class SerieController extends AbstractController
         if ($page < 1) {
             return $this->redirectToRoute('series_list', ['page' => 1]);
         }
-        
+
         $series = $serieRepository->findBestSeries($page);
 
         return $this->render('serie/list.html.twig', [
@@ -46,35 +46,7 @@ final class SerieController extends AbstractController
     #[Route('/create', name: 'create', methods: ['POST', 'GET'])]
     public function create(EntityManagerInterface $entityManager): Response
     {
-        // TODO Creer une serie !
-
         $serie = new Serie();
-        $serie
-            ->setBackdrop('backdrop.png')
-            ->setDateCreated(new \DateTime())
-            ->setFirstAirDate(new \DateTime('-6 year'))
-            ->setName('Stargate SG1')
-            ->setGenres('SF')
-            ->setLastAirDate(new \DateTime('-3 month'))
-            ->setPopularity(5000)
-            ->setPoster('poster.png')
-            ->setStatus('canceled')
-            ->setTmdbId(12345)
-            ->setVote(8);
-
-        dump($serie);
-
-        $entityManager->persist($serie);
-        $entityManager->flush();
-
-        dump($serie);
-
-        $serie->setName('Code Quantum');
-        $entityManager->persist($serie);
-        $entityManager->flush();
-
-        $entityManager->remove($serie);
-        $entityManager->flush();
 
         return $this->render('serie/create.html.twig');
     }
