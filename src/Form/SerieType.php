@@ -25,10 +25,9 @@ class SerieType extends AbstractType
                     'Ended' => 'ended',
                     'Returning' => 'returning',
                     'Canceled' => 'canceled',
-                ], [
-                    'expanded' => false,
-                    'multiple' => false
-                ]
+                ],
+                'expanded' => false,
+                'multiple' => false
             ])
             ->add('vote')
             ->add('popularity')
