@@ -17,7 +17,6 @@
 </head>
 <body>
 <div class="container">
-    {% block extraStyles %} {% endblock %}
 
     <header>
         <a href="{{ path('main_home') }}">
@@ -30,5 +29,6 @@
     </main>
     <footer>{% include 'views/nav/nav.html.twig' %}</footer>
 </div>
+{% block extraStyles %} {% endblock %}
 </body>
 </html>
