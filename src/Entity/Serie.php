@@ -215,10 +215,19 @@ class Serie
         return $this;
     }
 
+    // appel juste avant enregistrement
     #[ORM\PrePersist]
     public function setDateCreatedNow()
     {
         $this->setDateCreated(new \DateTime());
+
+    }
+
+    // appel juste avant modification
+    #[ORM\PreUpdate]
+    public function setDateUpdatedNow()
+    {
+        $this->setDateModified(new \DateTime());
 
     }
 }
