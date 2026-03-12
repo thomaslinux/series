@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Exception\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -58,7 +59,12 @@ final class SerieController extends AbstractController
 
         if ($serieForm->isSubmitted() && $serieForm->isValid()) {
 
-            dd($serieForm->get('backdrop')->getData());
+            /**
+             * @var UploadedFile $file
+             */
+            $file = ($serieForm->get('backdrop')->getData());
+            $newFileName = $serie->getName() . '-' . uniqid() . '.' . $file->guessExtension();
+            $file->move();
 
             //traitement des données
             $entityManager->persist($serie);
