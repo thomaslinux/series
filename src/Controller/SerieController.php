@@ -63,6 +63,7 @@ final class SerieController extends AbstractController
             $entityManager->persist($serie);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Serie' . $serie->getName() . 'added !');
             return $this->redirectToRoute('series_show', ['id' => $serie->getId()]);
         }
 
