@@ -64,7 +64,9 @@ final class SerieController extends AbstractController
              */
             $file = ($serieForm->get('backdrop')->getData());
             $newFileName = $serie->getName() . '-' . uniqid() . '.' . $file->guessExtension();
-            $file->move();
+            $file->move('images/backdrops', $newFileName);
+
+            $serie->setBackdrop($newFileName);
 
             //traitement des données
             $entityManager->persist($serie);
