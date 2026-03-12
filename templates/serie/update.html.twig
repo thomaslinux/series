@@ -1,16 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-
+    Update
 {% endblock %}
 
 {% block body %}
-    <h2>Update a TV-SHOW</h2>
-
-    {{ form_start(serieForm) }}
-    {{ form_widget(serieForm) }}
-    <button>Update a serie !</button>
-    {{ form_end(serieForm) }}
+    {% embed 'views/form/serie-form.html.twig' %}
+        {% block formTitle %} Update a serie ! {% endblock %}
+        {% block buttonLabel %} Update ! {% endblock %}
+    {% endembed %}
 
 {% endblock %}
 
