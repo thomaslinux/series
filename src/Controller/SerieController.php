@@ -20,6 +20,7 @@ final class SerieController extends AbstractController
     {
 //        $series = $serieRepository->findAll();
 //        $series = $serieRepository->findBy([], ['popularity' => 'DESC'], 25, 25);
+//        $series = $serieRepository->findOneBy();
 
         $nbSeries = $serieRepository->count();
         $maxPage = ceil($nbSeries / 50);
