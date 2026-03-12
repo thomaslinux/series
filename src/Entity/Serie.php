@@ -214,4 +214,11 @@ class Serie
 
         return $this;
     }
+
+    #[ORM\PrePersist]
+    public function setDateCreatedNow()
+    {
+        $this->setDateCreated(new \DateTime());
+
+    }
 }
