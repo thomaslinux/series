@@ -50,6 +50,7 @@ final class SerieController extends AbstractController
     public function create(EntityManagerInterface $entityManager, Request $request): Response
     {
         $serie = new Serie();
+//        $serie->setName('La série de Michel');
         $serieForm = $this->createForm(SerieType::class, $serie);
 
         // extraction des données de la requête pour injection dans l'instance de l'entité
