@@ -59,7 +59,6 @@ final class SerieController extends AbstractController
 
 
             //traitement des données
-            $serie->setDateCreated(new \DateTime());
             $entityManager->persist($serie);
             $entityManager->flush();
 
