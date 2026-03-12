@@ -17,6 +17,7 @@ class Serie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -144,7 +145,7 @@ class Serie
         return $this->firstAirDate;
     }
 
-    public function setFirstAirDate(\DateTime $firstAirDate): static
+    public function setFirstAirDate(?\DateTime $firstAirDate): static
     {
         $this->firstAirDate = $firstAirDate;
 
@@ -156,7 +157,7 @@ class Serie
         return $this->lastAirDate;
     }
 
-    public function setLastAirDate(\DateTime $lastAirDate): static
+    public function setLastAirDate(?\DateTime $lastAirDate): static
     {
         $this->lastAirDate = $lastAirDate;
 
