@@ -55,7 +55,7 @@ final class SerieController extends AbstractController
         // extraction des données de la requête pour injection dans l'instance de l'entité
         $serieForm->handleRequest($request);
 
-        if ($serieForm->isSubmitted()) {
+        if ($serieForm->isSubmitted() && $serieForm->isValid()) {
 
 
             //traitement des données
