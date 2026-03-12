@@ -56,9 +56,14 @@ final class SerieController extends AbstractController
         $serieForm->handleRequest($request);
 
         if ($serieForm->isSubmitted()) {
+
+            dd($serie);
+
             //traitement des données
             $entityManager->persist($serie);
             $entityManager->flush();
+
+            return $this->redirectToRoute('series_show', ['id' => $serie->getId()]);
         }
 
         return $this->render('serie/create.html.twig', [
