@@ -57,9 +57,9 @@ final class SerieController extends AbstractController
 
         if ($serieForm->isSubmitted()) {
 
-            dd($serie);
 
             //traitement des données
+            $serie->setDateCreated(new \DateTime());
             $entityManager->persist($serie);
             $entityManager->flush();
 
