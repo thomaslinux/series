@@ -32,7 +32,6 @@ class Serie
     private ?string $vote = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
-    #[Assert\Range(notInRangeMessage: "Popularity must be between {{ min }} and {{ max }}", min: 0, max: 10)]
     private ?string $popularity = null;
 
     #[ORM\Column(length: 255)]

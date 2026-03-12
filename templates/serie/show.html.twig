@@ -19,7 +19,9 @@
             <div>Status {{ serie.status }}</div>
             <div>Aired from {{ serie.firstAirDate | date('Y/m/d') }} to {{ serie.lastAirDate | date('Y/m/d') }}</div>
             <div>{{ serie.overview | nl2br }}</div>
+            <a class="turboBouton link-button" href="{{ path('series_update', {'id': serie.id}) }}">Update</a>
         </div>
+
     </div>
     {% block extraStyles %}
         <style>

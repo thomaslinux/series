@@ -92,7 +92,7 @@ final class SerieController extends AbstractController
             $entityManager->persist($serie);
             $entityManager->flush();
             //feedbackutilisateur
-            $this->addFlash('success', 'Serie update !');
+            $this->addFlash('success', 'Serie updated !');
             //redirection vers la page de détail
             return $this->redirectToRoute('series_show', ['id' => $serie->getId()]);
         }
@@ -102,7 +102,7 @@ final class SerieController extends AbstractController
         ]);
     }
 
-    #[Route('/details/{id}', name: 'show', requirements: ['id' => '\d+'])]
+    #[Route('/detail/{id}', name: 'show', requirements: ['id' => '\d+'])]
     public function show(int $id, SerieRepository $serieRepository): Response
     {
         $serie = $serieRepository->find($id);
