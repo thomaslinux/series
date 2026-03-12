@@ -72,6 +72,36 @@ final class SerieController extends AbstractController
         ]);
     }
 
+    #[Route('/update/{id}', name: 'update', methods: ['POST', 'GET'])]
+    public function update(
+        int                    $id,
+        SerieRepository        $serieRepository,
+        Request                $request,
+        EntityManagerInterface $entityManager
+    )
+    {
+        // récupération de la série
+        $serie = $serieRepository->find($id);
+        // création du formulaire associé à la série
+        $serieForm = $this->createForm(SerieType::class, $serie);
+        // extraction des données de la requête
+        $serieForm->handleRequest($request);
+        //test soumission et validation
+        if ($serieForm->isSubmitted() && $serieForm->isValid()) {
+            //enregistrement en bdd
+            $entityManager->persist($serie);
+            $entityManager->flush();
+            //feedbackutilisateur
+            $this->addFlash('success', 'Serie update !');
+            //redirection vers la page de détail
+            return $this->redirectToRoute('series_show', ['id' => $serie->getId()]);
+        }
+
+        return $this->render('serie/update.html.twig', [
+            'serieForm' => $serieForm
+        ]);
+    }
+
     #[Route('/details/{id}', name: 'show', requirements: ['id' => '\d+'])]
     public function show(int $id, SerieRepository $serieRepository): Response
     {
