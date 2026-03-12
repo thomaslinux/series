@@ -55,6 +55,12 @@ final class SerieController extends AbstractController
         // extraction des données de la requête pour injection dans l'instance de l'entité
         $serieForm->handleRequest($request);
 
+        if ($serieForm->isSubmitted()) {
+            //traitement des données
+            $entityManager->persist($serie);
+            $entityManager->flush();
+        }
+
         return $this->render('serie/create.html.twig', [
             'serieForm' => $serieForm->createView()
         ]);
