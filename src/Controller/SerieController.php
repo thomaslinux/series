@@ -58,6 +58,7 @@ final class SerieController extends AbstractController
 
         if ($serieForm->isSubmitted() && $serieForm->isValid()) {
 
+            dd($serieForm->get('backdrop')->getData());
 
             //traitement des données
             $entityManager->persist($serie);
