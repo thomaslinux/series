@@ -20,4 +20,10 @@ final class SeasonController extends AbstractController
     {
         // TODO formulaire de update de saison
     }
+
+    #[Route('/delete/{id}', name: 'delete', requirements: ['id' => '\d+'])]
+    public function delete(int $id): Response
+    {
+        // TODO delete de saison et renvoyer sur la page de série
+    }
 }
