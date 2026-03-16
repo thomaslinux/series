@@ -22,9 +22,22 @@
             <a class="turboBouton link-button" href="{{ path('series_update', {'id': serie.id}) }}">Update</a>
         </div>
 
-        <article>
-            
-        </article>
+        <div class="seasons">
+
+            <h3>Seasons !</h3>
+            {% for season in serie.seasons %}
+                <article>
+                    <img src="{{ asset('images/posters/seasons/' ~ season.poster) }}"
+                         alt="{{ serie.name }} | #{{ season.number }}">
+                    <div>
+
+                        <h4>#{{ season.number }}</h4>
+                        <div>{{ season.firstAirDate | date('d/m/y') }}</div>
+                        <div>{{ season.overview | nl2br }}</div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
 
     </div>
     {% block extraStyles %}

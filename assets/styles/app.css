@@ -81,3 +81,18 @@ label {
 .form-error {
     color: red;
 }
+
+.seasons {
+    margin-top: 20px;
+}
+
+.seasons article {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.seasons article img {
+    max-height: 200px;
+    margin-right: 5px;
+}
+
