@@ -19,7 +19,8 @@
                 <a href="{{ path('series_show', {'id': serie.id}) }}">
 
                     <div class="serie-name">{{ serie.name }}</div>
-                    <img src="{{ asset('images/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+                    <img src="{{ asset('images/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}"
+                         title="{{ serie.seasons | length }} seasons">
                 </a>
             </article>
         {% endfor %}
