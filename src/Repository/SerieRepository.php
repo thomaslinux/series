@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Serie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -38,7 +39,9 @@ class SerieRepository extends ServiceEntityRepository
         $query->setMaxResults(50);
         $offset = ($page - 1) * 50;
         $query->setFirstResult($offset);
-        return $query->getResult();
+        // gérer la pagination sur jointure
+        $paginator = new Paginator($query);
+        return $paginator;
 
     }
 }
