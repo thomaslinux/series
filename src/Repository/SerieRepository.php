@@ -31,7 +31,10 @@ class SerieRepository extends ServiceEntityRepository
         $qb
 //            ->andWhere('s.vote > 8')
 //            ->andWhere('s.popularity > 1000')
-            ->addOrderBy('s.popularity', 'DESC');
+            ->addOrderBy('s.popularity', 'DESC')
+            // jointure + select
+            ->leftJoin('s.seasons', 'seasons')
+            ->addSelect('seasons');
 
         $query = $qb->getQuery();
         $query->setMaxResults(50);
