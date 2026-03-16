@@ -34,7 +34,7 @@ class SerieRepository extends ServiceEntityRepository
 //            ->leftJoin('s.seasons', 'seasons')
 //            ->addSelect('seasons');
 
-        $query = $qb->getQuery();
+//        $query = $qb->getQuery();
         $query->setMaxResults(50);
         $offset = ($page - 1) * 50;
         $query->setFirstResult($offset);
