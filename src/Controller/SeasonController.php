@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Repository\SeasonRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -22,8 +25,19 @@ final class SeasonController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'delete', requirements: ['id' => '\d+'])]
-    public function delete(int $id): Response
+    public function delete(
+        int                    $id,
+        EntityManagerInterface $entityManager,
+        SeasonRepository       $seasonRepository
+    ): Response
     {
-        // TODO delete de saison et renvoyer sur la page de série
+        // récupération de la saison pour pouvoir la supprimer
+        $season = $seasonRepository->find($id);
+
+        $entityManager->remove($season);
+        $entityManager->flush();
+
+        $this->addFlash('success', message: 'Season deleted !');
+        return $this->redirectToRoute('series_show', ['id' => $season->getSerie()->getId()]);
     }
 }
