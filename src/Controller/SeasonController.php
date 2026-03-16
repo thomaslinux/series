@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Season;
 use App\Form\SeasonType;
 use App\Repository\SeasonRepository;
+use App\Repository\SerieRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,9 +17,22 @@ use Symfony\Component\Routing\Attribute\Route;
 final class SeasonController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/add/serie/{id}', name: 'add_by_serie', requirements: ['id' => '\d+'])]
+    public function add(
+        Request                $request,
+        EntityManagerInterface $entityManager,
+        SerieRepository        $serieRepository,
+        int                    $id = null
+    ): Response
     {
+
         $season = new Season();
+
+        if ($id) {
+            $serie = $serieRepository->find($id);
+            $season->setSerie($serie);
+            $season->setNumber(count($serie->getSeasons()) + 1);
+        }
         $seasonForm = $this->createForm(SeasonType::class, $season);
         $seasonForm->handleRequest($request);
 

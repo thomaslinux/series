@@ -19,9 +19,11 @@
             <div>Status {{ serie.status }}</div>
             <div>Aired from {{ serie.firstAirDate | date('Y/m/d') }} to {{ serie.lastAirDate | date('Y/m/d') }}</div>
             <div>{{ serie.overview | nl2br }}</div>
-            <a class="turboBouton link-button" href="{{ path('series_update', {'id': serie.id}) }}">Update</a>
             <a onclick="return confirm('Suppression de {{ serie.name }} ?')" class="turboBouton link-button"
                href="{{ path('series_delete', {'id': serie.id}) }}">Delete</a>
+            <a class="turboBouton link-button" href="{{ path('series_update', {'id': serie.id}) }}">Update</a>
+            <a class="turboBouton link-button" href="{{ path('season_add_by_serie', {'id': serie.id}) }}">Add a
+                season</a>
         </div>
 
     </div>
