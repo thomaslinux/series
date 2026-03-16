@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    {% embed 'views/form/template-form.html.twig' %}
+    {% embed 'views/form/template-form.html.twig' with {form:serieForm} %}
         {% block formTitle %} Update a serie ! {% endblock %}
         {% block buttonLabel %} Update ! {% endblock %}
     {% endembed %}

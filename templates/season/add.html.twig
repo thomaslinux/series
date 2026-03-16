@@ -6,7 +6,7 @@
 
 {% block body %}
 
-    {% embed 'views/form/template-form.html.twig' %}
+    {% embed 'views/form/template-form.html.twig' with { form : seasonForm } %}
         {% block formTitle %} Create a season ! {% endblock %}
         {% block buttonLabel %} Create ! {% endblock %}
     {% endembed %}
