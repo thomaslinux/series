@@ -18,6 +18,7 @@ body {
 
 main {
     flex: 1;
+    /*min-height: 100vh;*/
 }
 
 a {
@@ -28,6 +29,7 @@ a {
 nav ul {
     list-style: none; /*enlève la puce*/
     display: flex;
+    padding-left: 0px;
 }
 
 nav li {
@@ -57,8 +59,25 @@ img {
 }
 
 .serie-details-infos div {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding-left: 5px;
+}
+
+.link-button {
+    border: 2px solid blueviolet;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 30% 5%;
+}
+
+.flex-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex-between {
+    justify-content: space-between;
 }
 
 label {
