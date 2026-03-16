@@ -33,7 +33,7 @@
                 <img src="{{ asset('images/posters/seasons/' ~ season.poster) }}"
                      alt="{{ serie.name }} | #{{ season.number }}">
                 <div>
-
+                    <div><a class="link-button" href="{{ path('season_delete', {'id': season.id}) }}">Delete</a></div>
                     <h4>#{{ season.number }}</h4>
                     <div>{{ season.firstAirDate | date('d/m/y') }}</div>
                     <div>{{ season.overview | nl2br }}</div>
