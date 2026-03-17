@@ -12,12 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/season', name: 'season_')]
 final class SeasonController extends AbstractController
 {
     #[Route('/add', name: 'add')]
     #[Route('/add/serie/{id}', name: 'add_by_serie', requirements: ['id' => '\d+'])]
+    #[IsGranted("ROLE_ADMIN")]
     public function add(
         Request                $request,
         EntityManagerInterface $entityManager,
