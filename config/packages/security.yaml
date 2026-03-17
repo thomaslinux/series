@@ -5,7 +5,11 @@ security:
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
 
     firewalls:
         dev:
@@ -14,12 +18,12 @@ security:
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
             custom_authenticator: App\Security\UserAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
-                # target: app_any_route
+                target: series_list
 
             remember_me:
                 secret: '%kernel.secret%'
@@ -37,12 +41,8 @@ security:
 
     # Note: Only the *first* matching rule is applied
     access_control:
-        - { path: ^/series/(create|update|delete), roles: ROLE_USER }
-        - { path: ^/series, roles: PUBLIC_ACCESS }
-        - { path: ^/season, roles: ROLE_ADMIN }
-
-    role_hierarchy:
-        ROLE_ADMIN: ROLE_USER
+    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
