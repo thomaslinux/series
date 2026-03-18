@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\Serie;
 use App\Repository\SerieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,11 +46,16 @@ final class SerieController extends AbstractController
 
     #[Route('', name: 'create', methods: ['POST'])]
     public function create(
+        SerializerInterface    $serializer,
         EntityManagerInterface $entityManager,
         Request                $request
     ): Response
     {
-        dd($request->getContent());
+        $json = $request->getContent();
+        $serie = $serializer->deserialize($json, Serie::class, 'json');
+
+        // TODO enregistrer dans la base
+        return $this->json($serie, Response::HTTP_CREATED, [], ['groups' => 'serie-api']);
     }
 
     #[Route('/{id}', name: 'delete', methods: 'DELETE')]
