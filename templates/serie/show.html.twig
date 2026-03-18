@@ -4,8 +4,6 @@
     {{ serie.name }}
 {% endblock %}
 
-
-
 {% block body %}
     <h2>Detail of a TV-SHOW</h2>
     <div class="serie-details">
@@ -19,6 +17,11 @@
             <div>Status {{ serie.status }}</div>
             <div>Aired from {{ serie.firstAirDate | date('Y/m/d') }} to {{ serie.lastAirDate | date('Y/m/d') }}</div>
             <div>{{ serie.overview | nl2br }}</div>
+            <div>Likes : {{ serie.nbLike }}
+                <button class="btn-like" value="1">&#128077;</button>
+                <button class="btn-like" value="-1">&#128078;</button>
+            </div>
+
             <a onclick="return confirm('Suppression de {{ serie.name }} ?')" class="turboBouton link-button"
                href="{{ path('series_delete', {'id': serie.id}) }}">Delete</a>
             <a class="turboBouton link-button" href="{{ path('series_update', {'id': serie.id}) }}">Update</a>
@@ -43,15 +46,33 @@
             </article>
         {% endfor %}
     </div>
-
-    {% block extraStyles %}
-        <style>
-            body {
-                background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
-                url("{{ asset('images/backdrops/' ~ serie.backdrop) }}  ");
-            }
-        </style>
-    {% endblock %}
 {% endblock %}
+
+{% block extraJs %}
+    <script>
+        let buttons = Array.from(document.querySelectorAll(".btn-like"));
+
+        buttons.forEach(function (button) {
+
+            button.addEventListener('click', function () {
+                let data = {like: this.value};
+
+                fetch('{{ path('api_series_update', {'id':serie.id }) }}',
+                    {method: 'PUT', body: JSON.stringify(data)});
+            });
+
+        });
+    </script>
+{% endblock %}
+
+{% block extraStyles %}
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
+            url("{{ asset('images/backdrops/' ~ serie.backdrop) }}  ");
+        }
+    </style>
+{% endblock %}
+
 
 
