@@ -23,8 +23,8 @@ final class MainController extends AbstractController
         $username = '<h1>Sylvain</h1>';
 
         $joke = file_get_contents("https://api.chucknorris.io/jokes/random");
-        $joke = (json_decode($joke));
-        dump($joke->value);
+        $joke = (json_decode($joke, true));
+        dump($joke['value']);
 
         return $this->render('main/test.html.twig', [
             'mySerie' => $serie,
