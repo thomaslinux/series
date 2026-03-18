@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SeasonRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: SeasonRepository::class)]
 class Season
@@ -12,15 +13,19 @@ class Season
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('serie-api')]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups('serie-api')]
     private ?int $number = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups('serie-api')]
     private ?\DateTime $firstAirDate = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups('serie-api')]
     private ?string $overview = null;
 
     #[ORM\Column(length: 255, nullable: true)]

@@ -2,17 +2,26 @@
 
 namespace App\Controller\Api;
 
+use App\Repository\SerieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/api/series', name: 'api_series_')]
 final class SerieController extends AbstractController
 {
     #[Route('', name: 'retrieve_all', methods: 'GET')]
-    public function retrieveAll(): Response
+    public function retrieveAll(
+        SerieRepository     $serieRepository,
+        SerializerInterface $serializer
+    ): Response
     {
         // TODO renvoyer toutes les séries au format json
+        $series = $serieRepository->findAll();
+//        dd($serializer->serialize($series, 'json', ['groups' => 'serie-api']));
+
+        return $this->json($series, Response::HTTP_OK, [], ['groups' => 'serie-api']);
     }
 
     #[Route('/{id}', name: 'retrieve_one', methods: 'GET')]
@@ -20,6 +29,7 @@ final class SerieController extends AbstractController
     {
         // TODO renvoyer une série au format json
     }
+
     #[Route('/{id}', name: 'update', methods: ['PUT', 'PATCH'])]
     public function update(int $id): Response
     {
@@ -38,5 +48,5 @@ final class SerieController extends AbstractController
         // TODO supprimer une série
     }
 
-
+}
 
