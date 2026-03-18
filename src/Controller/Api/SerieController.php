@@ -5,6 +5,7 @@ namespace App\Controller\Api;
 use App\Repository\SerieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -43,9 +44,12 @@ final class SerieController extends AbstractController
     }
 
     #[Route('', name: 'create', methods: ['POST'])]
-    public function create(): Response
+    public function create(
+        EntityManagerInterface $entityManager,
+        Request                $request
+    ): Response
     {
-        // TODO ajouter une nouvelle série
+        dd($request->getContent());
     }
 
     #[Route('/{id}', name: 'delete', methods: 'DELETE')]
