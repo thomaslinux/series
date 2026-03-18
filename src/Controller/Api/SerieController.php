@@ -54,7 +54,9 @@ final class SerieController extends AbstractController
         $json = $request->getContent();
         $serie = $serializer->deserialize($json, Serie::class, 'json');
 
-        // TODO enregistrer dans la base
+        //validation des données, comme un formulaire
+        $errors = $validator->validate($serie);
+
         $entityManager->persist($serie);
         $entityManager->flush();
 
