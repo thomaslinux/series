@@ -55,6 +55,9 @@ final class SerieController extends AbstractController
         $serie = $serializer->deserialize($json, Serie::class, 'json');
 
         // TODO enregistrer dans la base
+        $entityManager->persist($serie);
+        $entityManager->flush();
+
         return $this->json($serie, Response::HTTP_CREATED, [], ['groups' => 'serie-api']);
     }
 
