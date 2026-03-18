@@ -42,7 +42,7 @@ final class SerieController extends AbstractController
     #[Route('/{id}', name: 'update', methods: ['PUT', 'PATCH'])]
     public function update(int $id, Request $request): Response
     {
-        dd($request->getContent());
+        $data = json_decode($request->getContent(), true);
     }
 
     #[Route('', name: 'create', methods: ['POST'])]
