@@ -12,4 +12,15 @@ class FileUploader
         $file->move($directory, $newFilename);
         return $newFilename;
     }
+
+    public function delete(string $filename, string $directory)
+    {
+        return unlink($directory . DIRECTORY_SEPARATOR . $filename);
+    }
+
+    public function update(string $oldFileName, string $directory, UploadedFile $file, string $newName)
+    {
+        $this->delete($oldFileName, $directory);
+        $this->upload($file, $directory, $newName);
+    }
 }
