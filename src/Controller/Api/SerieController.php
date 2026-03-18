@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/api/series', name: 'api_series_')]
 final class SerieController extends AbstractController
@@ -48,7 +49,8 @@ final class SerieController extends AbstractController
     public function create(
         SerializerInterface    $serializer,
         EntityManagerInterface $entityManager,
-        Request                $request
+        Request                $request,
+        ValidatorInterface     $validator
     ): Response
     {
         $json = $request->getContent();
