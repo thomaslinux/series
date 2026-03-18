@@ -40,9 +40,22 @@ final class SerieController extends AbstractController
     }
 
     #[Route('/{id}', name: 'update', methods: ['PUT', 'PATCH'])]
-    public function update(int $id, Request $request): Response
+    public function update(
+        int                    $id,
+        Request                $request,
+        SerieRepository        $serieRepository,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         $data = json_decode($request->getContent(), true);
+        $serie = $serieRepository->find($id);
+
+        $serie->setNbLike($serie->getNbLike() + $data['like']);
+
+        $entityManager->persist($serie);
+        $entityManager->flush();
+
+        return $this->json($serie, Response::HTTP_OK, [], ['groups' => 'serie-api']);
     }
 
     #[Route('', name: 'create', methods: ['POST'])]
