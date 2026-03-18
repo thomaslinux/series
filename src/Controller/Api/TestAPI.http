@@ -10,12 +10,13 @@ Content-Type: application/json
     "genres": "Western",
     "status": "Returning",
     "vote": "8",
+    "nbLike": 0,
     "popularity": "500",
     "firstAirDate": "2026-03-01",
     "lastAirDate": "2026-03-31",
     "backdrop": "backdrop.png",
     "poster": "poster.png",
-    "tmbdId": 123456
+    "tmdbId": 123456
 }
 
 ###
