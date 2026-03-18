@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Repository\SerieRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -25,9 +26,14 @@ final class SerieController extends AbstractController
     }
 
     #[Route('/{id}', name: 'retrieve_one', methods: 'GET')]
-    public function retrieveOne(int $id): Response
+    public function retrieveOne(
+        int             $id,
+        SerieRepository $serieRepository
+    ): Response
     {
         // TODO renvoyer une série au format json
+        $serie = $serieRepository->find($id);
+        return $this->json($serie, Response::HTTP_OK, [], ['groups' => 'serie-api']);
     }
 
     #[Route('/{id}', name: 'update', methods: ['PUT', 'PATCH'])]
@@ -43,9 +49,18 @@ final class SerieController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: 'DELETE')]
-    public function delete(int $id): Response
+    public function delete(
+        int                    $id,
+        SerieRepository        $serieRepository,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         // TODO supprimer une série
+        $serie = $serieRepository->find($id);
+        $entityManager->remove($serie);
+        $entityManager->flush();
+
+        return $this->json(['success' => 'Serie deleted'], Response::HTTP_ACCEPTED);
     }
 
 }

@@ -1,0 +1,4 @@
+### Delete SERIE
+DELETE http://localhost:8081/series/public/api/series/23
+
+###
