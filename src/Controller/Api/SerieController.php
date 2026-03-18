@@ -61,7 +61,7 @@ final class SerieController extends AbstractController
 
         $entityManager->persist($serie);
         $entityManager->flush();
-
+        //TODO réparer create
         return $this->json($serie, Response::HTTP_CREATED, [], ['groups' => 'serie-api']);
     }
 
