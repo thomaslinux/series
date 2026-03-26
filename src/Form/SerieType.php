@@ -49,7 +49,7 @@ class SerieType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new Image(
-                        minWidth: '20px',
+                        minWidth: '20',
                         mimeTypes: ['images/png', 'images/jpg', 'images/bmp'],
                     )
                 ]
