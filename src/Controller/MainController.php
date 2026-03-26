@@ -36,4 +36,20 @@ final class MainController extends AbstractController
         ]);
     }
 
+    public function create(Request $request, EntityManagerInterface $em)
+    {
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($article);
+            $this->addFlash('success', 'Article inséré avec succès');
+            return $this->redirectToRoute('blog_front_homepage');
+        }
+
+        return $this->render("front/homepage.html.twig", ['form' => $form]);
+    }
+
 }
